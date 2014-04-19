@@ -1,5 +1,4 @@
-/* global require export */
-'use strict';
+/* global  exports */
 
 //Require modules
 var utils = require('util');
@@ -7,8 +6,6 @@ var events = require('events');
 
 //core module
 function core(options) {
-	this.id = 'Core module';
-	this.uri = 'Resource'
 
 	//Invoke the EventEmitter
 	events.EventEmitter.call(this);
@@ -18,13 +15,11 @@ function core(options) {
 	this.extension = this.options.extension ? this.options.extension : {};
 
 	//Initialize the module
-	this.init = function () {
-		this.emit('init', this);
-		utils.log('core.init()', this.options);
-	};
+	this.emit('init', this);
+	utils.log('core.init()', this.options);
 
 	//Call method which will call method on extension if there
-	this.call = function(){
+	var call = function () {
 		//Log
 		utils.log(this.extension.hasOwnProperty([arguments[0]]), arguments[0], arguments);
 
@@ -32,40 +27,43 @@ function core(options) {
 		this.emit(arguments[0], arguments);
 
 		//check
-		if(this.extension.hasOwnProperty([arguments[0]])){
+		if (this.extension.hasOwnProperty([arguments[0]])) {
 
 			//invoke
-			this.extension[arguments[0]].call(this.extension[arguments[1]])
+			this.extension[arguments[0]].call(this.extension[arguments[1]]);
 		} else {
 
 			//error
-			throw Error('You need to provide an extension!');
+			throw new Error('You need to provide an extension!');
 		}
 	};
 
 
+	/**
+	 * Save handles creating or updating a new object.
+	 * It will invoke the update method only if an objects
+	 * id property exists and is not null.
+	 * @param args
+	 */
 	this.save = function (args) {
-
-		this.call('save', args);
-
+		call('save', args);
 	};
 
 	this.read = function (args) {
-		utils.log('read', args);
-		this.emit('read', args);
+		call('read', args);
 	};
 
 	this.update = function (args) {
-		utils.log('update', args);
-		this.emit('update', args);
+		call('update', args);
 	};
 
 	this.destroy = function (args) {
-		utils.log('destroy', args);
-		this.emit('destroy', args);
+		call('destroy', args);
 	};
 
-};
+}
+
+
 
 //Make core inherit all of EventEmitter properties/methods
 utils.inherits(core, events.EventEmitter);
