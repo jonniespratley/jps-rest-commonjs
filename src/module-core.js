@@ -7,6 +7,8 @@ var events = require('events');
 
 //core module
 function core(options) {
+	this.id = 'Core module';
+	this.uri = 'Resource'
 
 	//Invoke the EventEmitter
 	events.EventEmitter.call(this);
@@ -46,7 +48,7 @@ function core(options) {
 //Make core inherit all of EventEmitter properties/methods
 utils.inherits(core, events.EventEmitter);
 
-
+console.log(module.id);
 
 //Make public
 exports.core = core;
