@@ -1,19 +1,22 @@
 /* globals exports require */
+(function (exports) {
 
-//Require modules
-var utils = require('util');
-var events = require('events');
+	'use strict';
 
-//extension module
-var extension = {
-	name: 'module extension',
-	init: function () {
-		console.log('extension.init()');
-	},
-	save: function (args) {
-		console.log('extension.save');
-	}
-};
+	//Require modules
+	var utils = require('util');
+	var events = require('events');
 
-//Make public
-exports.extension = extension;
+	//extension module
+	this.extension = {
+		name: 'module extension',
+		init: function () {
+			console.log('extension.init()');
+		},
+		save: function (args) {
+			console.log('extension.save');
+		}
+	};
+
+
+}(typeof exports === 'object' && exports || this));
