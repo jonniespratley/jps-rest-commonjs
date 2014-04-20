@@ -1,5 +1,5 @@
 /* globals exports require */
-(function (exports) {
+(function (api) {
 
 	'use strict';
 
@@ -8,7 +8,7 @@
 	var events = require('events');
 
 	//extension module
-	this.extension = {
+	api.extension = {
 		name: 'module extension',
 		init: function () {
 			console.log('extension.init()');

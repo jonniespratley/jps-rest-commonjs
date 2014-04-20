@@ -13,6 +13,7 @@ app.on('init', function (instance) {
 	console.log('app.init.callback');
 });
 
+//Listen for save event
 app.on('save', function (obj) {
 	console.log('saved', obj);
 });
@@ -33,7 +34,7 @@ https.get('https://encrypted.google.com/', function (res) {
 	console.log("headers: ", res.headers);
 
 	res.on('data', function (d) {
-	//	process.stdout.write(d);
+		//	process.stdout.write(d);
 	});
 
 }).on('error', function (e) {
