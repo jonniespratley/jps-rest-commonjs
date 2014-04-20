@@ -1,5 +1,5 @@
 /* global require export */
-'use strict';
+
 
 //Require modules
 var utils = require('util');
@@ -8,7 +8,7 @@ var events = require('events');
 //core module
 function core(options) {
 	this.id = 'Core module';
-	this.uri = 'Resource'
+	this.uri = 'Resource';
 
 	//Invoke the EventEmitter
 	events.EventEmitter.call(this);
@@ -35,7 +35,7 @@ function core(options) {
 		if (this.extension.hasOwnProperty([arguments[0]])) {
 
 			//invoke
-			this.extension[arguments[0]].call(this.extension[arguments[1]])
+			this.extension[arguments[0]].call(this.extension[arguments[1]]);
 		} else {
 
 			//error
@@ -65,7 +65,7 @@ function core(options) {
 		this.emit('destroy', args);
 	};
 
-};
+}
 
 //Make core inherit all of EventEmitter properties/methods
 utils.inherits(core, events.EventEmitter);
