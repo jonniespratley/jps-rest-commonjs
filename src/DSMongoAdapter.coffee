@@ -5,10 +5,10 @@ utils = require('util')
 
 class DSMongoAdapter extends DS
   @name: 'MongoDB Adapter'
-  @defaults: 
+  @options:
     host: 'localhost'
     port: 27017
-  constructor:() ->
+  constructor:(@options) ->
     #//Invoke the EventEmitter
     events.EventEmitter.call(@);
     console.log('mongo-adapter') 

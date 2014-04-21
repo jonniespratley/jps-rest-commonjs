@@ -24,16 +24,16 @@ core = (options) ->
 	@call = ->
 
 		#Log
-		utils.log @extension.hasOwnProperty([arguments_[0]]), arguments_[0], arguments_
+		utils.log @extension.hasOwnProperty([arguments[0]]), arguments[0], arguments
 
 		#emit
-		@emit arguments_[0], arguments_
+		@emit arguments[0], arguments
 
 		#check
-		if @extension.hasOwnProperty([arguments_[0]])
+		if @extension.hasOwnProperty([arguments[0]])
 
 			#invoke
-			@extension[arguments_[0]].call @extension[arguments_[1]]
+			@extension[arguments[0]].call @extension[arguments[1]]
 		else
 
 			#error

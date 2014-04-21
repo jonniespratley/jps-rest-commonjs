@@ -13,12 +13,13 @@ DSMongoAdapter = (function(_super) {
 
   DSMongoAdapter.name = 'MongoDB Adapter';
 
-  DSMongoAdapter.defaults = {
+  DSMongoAdapter.options = {
     host: 'localhost',
     port: 27017
   };
 
-  function DSMongoAdapter() {
+  function DSMongoAdapter(options) {
+    this.options = options;
     events.EventEmitter.call(this);
     console.log('mongo-adapter');
   }

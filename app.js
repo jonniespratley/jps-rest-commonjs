@@ -46,7 +46,7 @@ console.log(ds);
 
 ds.findOne('posts', 1);
 ds.findAll('posts');
-ds.createOne('posts', {title: 'name'});
+ds.createRecord('posts', {title: 'name'});
 
 
 

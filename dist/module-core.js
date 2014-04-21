@@ -12,10 +12,10 @@ core = function(options) {
     utils.log("core.init()", this.options);
   };
   this.call = function() {
-    utils.log(this.extension.hasOwnProperty([arguments_[0]]), arguments_[0], arguments_);
-    this.emit(arguments_[0], arguments_);
-    if (this.extension.hasOwnProperty([arguments_[0]])) {
-      this.extension[arguments_[0]].call(this.extension[arguments_[1]]);
+    utils.log(this.extension.hasOwnProperty([arguments[0]]), arguments[0], arguments);
+    this.emit(arguments[0], arguments);
+    if (this.extension.hasOwnProperty([arguments[0]])) {
+      this.extension[arguments[0]].call(this.extension[arguments[1]]);
     } else {
       throw new Error("You need to provide an extension!");
     }

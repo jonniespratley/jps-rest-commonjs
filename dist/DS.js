@@ -1,11 +1,20 @@
+var events, utils;
+
+events = require('events');
+
+utils = require('util');
+
 
 /*
   DS
   This is a class that has database access methods and routes method calls to the adapter specficied.
  */
+
 exports.DS = (function() {
   function DS(options) {
     this.options = options;
+    utils.inherits(this, events.EventEmitter);
+    events.EventEmitter.call(this);
     return this;
   }
 
