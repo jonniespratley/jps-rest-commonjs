@@ -5,6 +5,26 @@
 class exports.DS
 	constructor: (@options) ->
 		return @
+	#Call method which will call method on extension if there
+	call: ->
+
+		#Log
+		utils.log @options.adapter?.hasOwnProperty([arguments[0]]), arguments[0], arguments
+
+		#emit
+		@emit arguments[0], arguments
+
+		#check
+		if @options.adapter?.hasOwnProperty([arguments[0]])
+
+			#invoke
+			@options.adapter?[arguments[0]].call @options.adapter?[arguments[1]]
+		else
+
+			#error
+			throw new Error("You need to provide an extension!")
+		return
+
 	findOne: (col, id) ->
 		"findOne #{col} #{id}"
 	findAll: (col) ->

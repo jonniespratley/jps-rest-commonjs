@@ -1,10 +1,10 @@
 //Require modules
-var core = require('./module-core').core;
+var core = require('./dist/module-core').core;
 
 //Create instance
 var app = new core({
 	name: 'My App',
-	extension: require('./module-extension').extension
+	extension: require('./dist/module-extension').extension
 });
 
 
@@ -33,7 +33,7 @@ app.init();
 
 
 //DS Testing
-var DS = require('./DS').DS;
+var DS = require('./dist/DS').DS;
 
 var ds = new DS({
 	adapter: 'Default',
