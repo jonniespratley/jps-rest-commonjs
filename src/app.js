@@ -27,6 +27,43 @@ app.destroy({id: 1});
 app.init();
 
 
+
+
+
+
+
+//DS Testing
+var DS = require('./DS').DS;
+
+var ds = new DS({
+	adapter: 'Default',
+	host: 'localhost',
+	port: 8181
+});
+
+console.log(ds);
+
+
+ds.findOne('posts', 1);
+ds.findAll('posts');
+ds.createOne('posts', {title: 'name'});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var https = require('https');
 
 https.get('https://encrypted.google.com/', function (res) {
