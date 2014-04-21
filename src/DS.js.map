@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "DS.js",
+  "sourceRoot": "",
+  "sources": [
+    "DS.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA,IAAA,EAAA;;AAAA;kBACE;;AAAA,EAAA,EAAC,CAAA,IAAD,GAAQ,qGAAR,CAAA;;YAAA;;IADF,CAAA"
+}
