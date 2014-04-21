@@ -1,6 +1,6 @@
 'use strict';
 
-var DS = require('../src/DS.js').DS;
+var DS = require('../dist/DS.js').DS;
 
 /*
  ======== A Handy Little Nodeunit Reference ========

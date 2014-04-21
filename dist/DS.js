@@ -28,5 +28,3 @@ exports.DS = (function() {
   return DS;
 
 })();
-
-//# sourceMappingURL=DS.js.map

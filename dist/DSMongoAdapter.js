@@ -30,5 +30,3 @@ DSMongoAdapter = (function(_super) {
 utils.inherits(DSMongoAdapter, events.EventEmitter);
 
 exports.DSMongoAdapter = DSMongoAdapter;
-
-//# sourceMappingURL=DSMongoAdapter.js.map

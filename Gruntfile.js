@@ -55,11 +55,11 @@ module.exports = function (grunt) {
 		// Compiles CoffeeScript to JavaScript
 		coffee: {
 			options: {
-				bare: true, sourceMap: true, sourceRoot: ''
+				bare: true, sourceMap: false, sourceRoot: 'src'
 			}, dist: {
 				files: [
 					{
-						expand: true, cwd: 'src', src: '{,*/}*.coffee', dest: 'src', ext: '.js'
+						expand: true, cwd: 'src', src: '{,*/}*.coffee', dest: 'dist', ext: '.js'
 					}
 				]
 			}, test: {
@@ -73,5 +73,5 @@ module.exports = function (grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
+	grunt.registerTask('default', ['coffee', 'jshint', 'nodeunit', 'concat', 'uglify']);
 };
