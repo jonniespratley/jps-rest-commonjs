@@ -1,36 +1,78 @@
 'use strict';
+var request = require('request');
+//var RestServer = require('../lib/rest-server.js').RestServer;
 
-var jpsrest = require('../src/jps-rest.js');
+/**
+ * If server is not running use this to start server before tests.
+ */
+var mockServer = null;
+mockServer = new RestServer();
+mockServer.listen(9090);
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+var endpoint = 'http://localhost:9090';
+var expected = {
+	message: 'RESTful Node API Server'
+};
+//Actuall Tests
+exports.RestServer = {
+	setUp: function (done) {
+		done();
+	},
+	'GET /api': function (test) {
+		test.expect(1);
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+		//send request
+		request(endpoint + '/api', function (error, response, body) {
+			test.deepEqual(JSON.parse(body), expected, 'should return RESTful message');
+			test.done();
+		});
+	},
+	'GET /api/posts': function (test) {
+		expected.message = 'Query items in posts';
+		request({
+			uri: endpoint + '/api/posts',
+			method: 'GET'
+		}, function (error, response, body) {
+			test.deepEqual(JSON.parse(body), expected, 'should get all items');
+			test.done();
+		});
+	},
+	'GET /api/posts/1': function (test) {
+		expected.message = 'Read item 1 in posts';
+		request({
+			uri: endpoint + '/api/posts/1',
+			method: 'GET'
+		}, function (error, response, body) {
+			test.deepEqual(JSON.parse(body), expected, 'should get 1 item');
+			test.done();
+		});
+	},
+	'POST /api/posts': function (test) {
+		expected.message = 'Create item in posts';
 
-exports['awesome'] = {
-  setUp: function(done) {
-    // setup here
-    done();
-  },
-  'no args': function(test) {
-    test.expect(1);
-    // tests here
-    test.equal(jpsrest.awesome(), 'awesome', 'should be awesome.');
-    test.done();
-  }
+	},
+	'PUT /api/posts/1': function (test) {
+		expected.message = 'Update item 1 in posts';
+		request({
+			uri: endpoint + '/api/posts/1',
+			method: 'PUT',
+			json: {
+				_id: 1,
+				title: 'Updated title'
+			}
+		}, function (error, response, body) {
+			test.deepEqual(JSON.parse(body), expected, 'should should update item');
+			test.done();
+		});
+	},
+	'DELETE /api/posts/1': function (test) {
+		expected.message = 'Delete item 1 in posts';
+		request({
+			uri: endpoint + '/api/posts/1',
+			method: 'DELETE'
+		}, function (error, response, body) {
+			test.deepEqual(JSON.parse(body), expected, 'should should delete item');
+			test.done();
+		});
+	}
 };

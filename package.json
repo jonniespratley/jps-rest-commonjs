@@ -34,8 +34,9 @@
     "grunt-contrib-coffee": "~0.10.1"
   },
   "dependencies": {
-    "socket.io": "latest",
-    "deferred": "latest"
+    "deferred": "latest",
+    "request": "^2.36.0",
+    "socket.io": "latest"
   },
   "scripts": {
     "start": "node src/socketio.js",

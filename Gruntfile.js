@@ -2,14 +2,17 @@
 
 module.exports = function (grunt) {
 	// Load all grunt tasks
-	require( 'load-grunt-tasks' )( grunt );
+	require('load-grunt-tasks')(grunt);
 	// Show elapsed time at the end.
-	require( 'time-grunt' )( grunt );
+	require('time-grunt')(grunt);
 
 	// Project configuration.
-	grunt.initConfig( {
+	grunt.initConfig({
 		// Metadata.
-		pkg: grunt.file.readJSON( 'package.json' ), banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %>\n' + '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' + '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' + ' Licensed MIT */\n',
+		pkg: grunt.file.readJSON('package.json'), banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %>\n' + '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' + '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' + ' Licensed MIT */\n',
+		clean: {
+			dist: 'dist'
+		},
 		// Task configuration.
 		concat: {
 			options: {
@@ -29,7 +32,7 @@ module.exports = function (grunt) {
 		},
 		jshint: {
 			options: {
-				jshintrc: '.jshintrc', reporter: require( 'jshint-stylish' )
+				jshintrc: '.jshintrc', reporter: require('jshint-stylish')
 			}, gruntfile: {
 				src: 'Gruntfile.js'
 			}, lib: {
@@ -72,8 +75,8 @@ module.exports = function (grunt) {
 				]
 			}
 		}
-	} );
+	});
 
 	// Default task.
-	grunt.registerTask( 'default', ['coffee', 'jshint', 'nodeunit', 'concat', 'uglify'] );
+	grunt.registerTask('default', [ 'clean', 'coffee', 'jshint', 'nodeunit', 'concat', 'uglify']);
 };
